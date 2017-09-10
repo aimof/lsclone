@@ -31,7 +31,6 @@ func main() {
 		}
 	}
 	fmt.Printf("\n")
-
 }
 
 func isDirectory(path string) (isDir bool, err error) {

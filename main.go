@@ -26,7 +26,11 @@ func main() {
 		log.Fatalln(err)
 	}
 	for _, file := range files {
-		if *aOpt || *allOpt || !(file.Name()[0] == byte('.')) {
+		if *pOpt && (*aOpt || *allOpt) && file.Name()[0] == byte('.') {
+			fmt.Printf(file.Name() + "/  ")
+		} else if (*aOpt || *allOpt) || file.Name()[0] == byte('.') {
+			fmt.Printf(file.Name() + "  ")
+		} else if file.Name()[0] != byte('.') {
 			fmt.Printf(file.Name() + "  ")
 		}
 	}

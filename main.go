@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	flag.Parse()
 	targetPath, err := os.Getwd()
 	if err != nil {
 		log.Fatalln(err)
@@ -24,11 +26,12 @@ func main() {
 		log.Fatalln(err)
 	}
 	for _, file := range files {
-		if !(file.Name()[0] == byte('.')) {
+		if *aOpt || *allOpt || !(file.Name()[0] == byte('.')) {
 			fmt.Printf(file.Name() + "  ")
 		}
 	}
 	fmt.Printf("\n")
+
 }
 
 func isDirectory(path string) (isDir bool, err error) {

@@ -24,7 +24,9 @@ func main() {
 		log.Fatalln(err)
 	}
 	for _, file := range files {
-		fmt.Printf(file.Name() + "  ")
+		if !(file.Name()[0] == byte('.')) {
+			fmt.Printf(file.Name() + "  ")
+		}
 	}
 	fmt.Printf("\n")
 }

@@ -26,12 +26,14 @@ func main() {
 		log.Fatalln(err)
 	}
 	for _, file := range files {
+		var fileName string = file.Name()
+		if file.IsDir() {
+			fileName = fileName + "/"
+		}
 		if *pOpt && (*aOpt || *allOpt) && file.Name()[0] == byte('.') {
-			fmt.Printf(file.Name() + "/  ")
-		} else if (*aOpt || *allOpt) || file.Name()[0] == byte('.') {
-			fmt.Printf(file.Name() + "  ")
+			fmt.Printf(fileName + "  ")
 		} else if file.Name()[0] != byte('.') {
-			fmt.Printf(file.Name() + "  ")
+			fmt.Printf(fileName + "  ")
 		}
 	}
 	fmt.Printf("\n")
